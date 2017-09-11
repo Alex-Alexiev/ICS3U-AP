@@ -1,11 +1,10 @@
 package ca.bayviewglen.dayone;
 
-public class HomeworkOne {
+public class NamingConventions {
 
 	public static void main(String[] args) {
-		
-		System.out.println("Hello there");
-				
+		// TODO Auto-generated method stub
+
 	}
 
 }
