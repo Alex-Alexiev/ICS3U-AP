@@ -4,10 +4,9 @@ public class HomeworkOne {
 
 	public static void main(String[] args) {
 		
-<<<<<<< HEAD
+
 		System.out.println("Hello there");
-				
-=======
+
 		printAlex();
 		printHospital();
 		printRocket();
@@ -47,8 +46,6 @@ public class HomeworkOne {
 		                  +"/\t\t\t\t\t\t      /\n"
 		                  +"///////////////////////////////////////////////////////");
 
-		
->>>>>>> 28ec8dae6dc11c6a836f3ad17febc874d6d600e6
 	}
 	
 	
