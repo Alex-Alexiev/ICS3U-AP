@@ -1,5 +1,6 @@
 package ca.bayviewglen.assignment;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Main {
@@ -34,14 +35,6 @@ public class Main {
 		fiveKmTime = stringToTime(in.next());
 	}
 	
-	public static void getSummary() {
-		System.out.println("Runner: " + lastName + ", " + firstName);
-		splitOne = timeToString(mileOneTime);
-		splitTwo = timeToString(mileTwoTime-mileOneTime);
-		splitThree = timeToString(fiveKmTime-mileTwoTime);
-		total = timeToString(fiveKmTime);
-	}
-	
 	public static void printSummary() {
 		getSummary();
 		System.out.println("Runner One Summary");
@@ -53,6 +46,15 @@ public class Main {
 		System.out.println("Total: " + total);		
 	}
 	
+	public static void getSummary() {
+		System.out.println("Runner: " + lastName + ", " + firstName);
+		splitOne = timeToString(mileOneTime);
+		splitTwo = timeToString(mileTwoTime-mileOneTime);
+		splitThree = timeToString(fiveKmTime-mileTwoTime);
+		total = timeToString(fiveKmTime);
+	}	
+
+	
 	public static double stringToTime (String time) {
 		double seconds = (Double.parseDouble(time.substring(0, time.indexOf(":"))))*60;
 		seconds += Double.parseDouble(time.substring(time.indexOf(":")+1));
@@ -61,8 +63,8 @@ public class Main {
 	
 	public static String timeToString (double time) {
 		int minutes = (int) (time/60);
-		double seconds = time%60;
-		seconds = ((int)(seconds*1000))/(double) 1000;
+		DecimalFormat secondsFormat = new DecimalFormat("00.000");
+		String seconds = secondsFormat.format(time%60);
 		return minutes + ":" + seconds;
 	}
 
