@@ -7,7 +7,9 @@ public class Main {
 	
 	static Scanner in = new Scanner(System.in);
 	
-	static String firstName, lastName, splitOne, splitTwo, splitThree, total;
+	static String firstName, lastName;
+	static String splitOne, splitTwo, splitThree, total;
+	static String table;
 	static double mileOneTime, mileTwoTime, fiveKmTime;
 
 	public static void main(String[] args) {
@@ -15,12 +17,14 @@ public class Main {
 		evaluateRunner();
 		evaluateRunner();
 		evaluateRunner();
-		evaluateRunner();
+		evaluateRunner();                 
 	}
 	
 	public static void evaluateRunner() {
 		getInput();
-		printSummary();
+		getSummary();
+		addTableRow();
+		printSummary();   
 	}
 	
 	public static void getInput() {
@@ -35,8 +39,8 @@ public class Main {
 		fiveKmTime = stringToTime(in.next());
 	}
 	
+	
 	public static void printSummary() {
-		getSummary();
 		System.out.println("Runner One Summary");
 		System.out.println("******************\n");
 		System.out.println("Runner: " + lastName + ", " + firstName);
@@ -53,8 +57,11 @@ public class Main {
 		splitThree = timeToString(fiveKmTime-mileTwoTime);
 		total = timeToString(fiveKmTime);
 	}	
-
 	
+	public static void addTableRow() {
+		add table rows to the table string.
+	}
+		
 	public static double stringToTime (String time) {
 		double seconds = (Double.parseDouble(time.substring(0, time.indexOf(":"))))*60;
 		seconds += Double.parseDouble(time.substring(time.indexOf(":")+1));
