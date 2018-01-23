@@ -119,7 +119,7 @@ public class DoubleArraySequence implements Cloneable{
 	 *   arithmetic overflow.
 	 **/
 	public void addAfter(double d){
-		ensureCapacity(manyItems+1);
+		ensureCapacity(manyItems+5);
 		if (isCurrent()) {
 			for (int i = manyItems; i > currentIndex+1; i--) {
 				data[i] = data[i-1];
