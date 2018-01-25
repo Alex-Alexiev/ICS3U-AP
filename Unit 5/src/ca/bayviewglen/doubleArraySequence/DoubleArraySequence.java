@@ -119,17 +119,9 @@ public class DoubleArraySequence implements Cloneable{
 	 *   arithmetic overflow.
 	 **/
 	public void addAfter(double d){
-<<<<<<< HEAD
-<<<<<<< HEAD
-		ensureCapacity(manyItems+5);
-=======
 		if (manyItems+1 > data.length) {
 			ensureCapacity(manyItems*2);
 		}
->>>>>>> 7a04d33642fc02f79dcd92f8ccc3ba1fe9285e57
-=======
-		ensureCapacity(manyItems+1);
->>>>>>> parent of 7a04d33... 75/75 (success)
 		if (isCurrent()) {
 			for (int i = manyItems; i > currentIndex+1; i--) {
 				data[i] = data[i-1];
@@ -164,7 +156,9 @@ public class DoubleArraySequence implements Cloneable{
 	 *   arithmetic overflow.
 	 **/
 	public void addBefore(double element){
-		ensureCapacity(manyItems+1);
+		if (manyItems+1 > data.length) {
+			ensureCapacity(manyItems*2);
+		}
 		if (isCurrent()) {
 			for (int i = manyItems; i > currentIndex; i--) {
 				data[i] = data[i-1];
@@ -173,7 +167,7 @@ public class DoubleArraySequence implements Cloneable{
 			manyItems++;
 		}
 		else {
-			for (int i = manyItems; i > 1; i--) {
+			for (int i = manyItems; i > 0; i--) {
 				data[i] = data[i-1];
 			}
 			data[0] = element;
@@ -206,6 +200,7 @@ public class DoubleArraySequence implements Cloneable{
 		for (int i = manyItems; i < manyItems+addend.manyItems; i++) {
 			data[i] = addend.data[i-manyItems];
 		}
+		manyItems+=addend.size();
 	}   
 
 
@@ -225,10 +220,14 @@ public class DoubleArraySequence implements Cloneable{
 	 *   advance may not be called.
 	 **/
 	public void advance( ){
-		currentIndex++;
+		if (isCurrent()) {
+			currentIndex++;
+		}
+		else {
+			throw new IllegalStateException("there is no current element");
+		}
 	}
-
-
+	
 	/**
 	 * Generate a copy of this sequence.
 	 * @param - none
@@ -280,10 +279,11 @@ public class DoubleArraySequence implements Cloneable{
 	 **/   
 	public static DoubleArraySequence catenation(DoubleArraySequence s1, DoubleArraySequence s2){
 		DoubleArraySequence ret = new DoubleArraySequence(s1.manyItems+s2.manyItems);
+		ret.manyItems = s1.manyItems + s2.manyItems;
 		for (int i = 0; i < s1.manyItems; i++) {
 			ret.data[i] = s1.data[i];
 		}
-		for (int i = s1.manyItems; i < s1.manyItems+s1.manyItems; i++) {
+		for (int i = s1.manyItems; i < ret.manyItems; i++) {
 			ret.data[i] = s2.data[i-s1.manyItems];
 		}
 		ret.setCurrentIndex(ret.manyItems);
@@ -375,10 +375,13 @@ public class DoubleArraySequence implements Cloneable{
 	 **/
 	public void removeCurrent( ){
 		if (isCurrent()) {
-			for (int i = currentIndex; i < (manyItems-2); i++) {
+			for (int i = currentIndex; i < (manyItems-1); i++) {
 				data[i] = data[i+1];
 			}
 			manyItems--;
+		}
+		else {
+			throw new IllegalStateException("There is no current element");
 		}
 	}
 
