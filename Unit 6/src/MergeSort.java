@@ -1,5 +1,5 @@
 
-public class MergeSort {
+public class MergeSort { //
 
 	public static void main(String[] args) {
 		int[] arr = {5,4,3,2,1};
@@ -8,7 +8,7 @@ public class MergeSort {
 			System.out.println(n);
 		}
 	}
-	//test
+	
 	public static int[] mergeSort(int[] arr, int startIndex, int endIndex) {
 		if (endIndex-startIndex <= 1) {
 			return new int[] {arr[startIndex]};
@@ -23,7 +23,7 @@ public class MergeSort {
 		int[] comb = new int[arr1.length+arr2.length];
 		int k = 0;
 		int i = 0;
-		int j = 0;
+		int j = 0;          
 		while (i < arr1.length && j < arr2.length) {
 			if (arr1[i] <= arr2[j]) {
 				comb[k] = arr1[i];
