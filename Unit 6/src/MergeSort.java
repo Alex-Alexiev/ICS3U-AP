@@ -8,7 +8,7 @@ public class MergeSort {
 			System.out.println(n);
 		}
 	}
-	
+	//test
 	public static int[] mergeSort(int[] arr, int startIndex, int endIndex) {
 		if (endIndex-startIndex <= 1) {
 			return new int[] {arr[startIndex]};
